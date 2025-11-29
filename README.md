@@ -7,7 +7,7 @@ Unlike ACT logs (which are plain text), FFXIV's native logs are binary-encrypted
 **Primary Use Cases:**
 * 🤖 **AI Training:** Creating clean datasets to train LLMs or Gems on your specific character's voice and personality.
 * 📚 **Archiving:** Saving years of RP history without the massive file bloat of combat logs.
-* 🕵️ **Recovery:** recovering chat history from sessions where ACT was not running.
+* 🕵️ **Recovery:** Recovering chat history from sessions where ACT was not running.
 
 ## 🚀 Key Features
 
@@ -39,4 +39,43 @@ Unlike ACT logs (which are plain text), FFXIV's native logs are binary-encrypted
    BASE_FOLDER = r"C:\Path\To\Your\FFXIV_Logs"
 
    # 2. Where to save the clean text files
-   OUTPUT_FOLDER = r"./Cleaned_
+   OUTPUT_FOLDER = r"./Cleaned_Logs"
+
+   # 3. List of Character Names to extract
+   # Use the exact spelling found in-game.
+   TARGET_CHARACTERS = [
+       "Cloud Strife",
+       "Tifa Lockhart"
+   ]
+   ```
+
+##  ▶️ Usage
+
+Open your terminal or command prompt in the script's folder and run:
+
+```bash
+python ffxiv_log_extractor.py
+```
+
+The script will scan all subdirectories, process every log file found, and output the results to your defined `Cleaned_Logs` folder.
+
+## 📂 Understanding the Output
+
+The script generates two types of files:
+
+1.  **`[Character_Name].txt`**
+    * Contains *only* the dialogue lines spoken by that specific character.
+    * Format: `Character Name: Message content`
+    * *Ideal for:* Training AI on a specific persona.
+
+2.  **`World_Context.txt`**
+    * Contains dialogue from all other players, NPCs, and retainers.
+    * *Ideal for:* Providing an AI with context about the world, lore, and general speaking styles of the community.
+
+## 🤝 Contributing
+
+The FFXIV log format is undocumented and messy. If you find a new type of "garbage" line that is slipping through the filters (e.g., specific PvP messages or new system alerts), feel free to open a Pull Request or Issue!
+
+Key areas to look at in the code:
+* `NOISE_PHRASES`: List of strings to ban.
+* `is_valid_actor()`: Logic for determining if a string is a name or a hex code.
