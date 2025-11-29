@@ -28,14 +28,20 @@ Unlike ACT logs (which are plain text), FFXIV's native logs are binary-encrypted
     Open the script in a text editor (VS Code, Notepad++, IDLE) and edit the top section:
     
     ```python
-    # Point this to your logs folder
-    BASE_FOLDER = r"C:\Users\YOUR_NAME\Documents\My Games\FINAL FANTASY XIV - A Realm Reborn"
-    
-    # Add your characters here (Exact spelling)
-    TARGET_CHARACTERS = [
-        "Cloud Strife",
-        "Tifa Lockhart"
-    ]
+    1. Path to your FFXIV Logs folder
+(Windows Default: "C:\Users\YOUR_USER\Documents\My Games\FINAL FANTASY XIV - A Realm Reborn")
+BASE_FOLDER = r"C:\Path\To\Your\FFXIV_Logs"
+
+# 2. Where to save the clean text files
+OUTPUT_FOLDER = r"./Cleaned_Logs"
+
+# 3. List of Character Names to extract into their own files
+# Exact spelling required. Spaces are allowed.
+TARGET_CHARACTERS = [
+    "Character Name One",
+    "Character Name Two"
+]
+
     ```
 
 4.  **Run the Script:**
